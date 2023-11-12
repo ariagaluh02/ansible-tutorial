@@ -1,0 +1,27 @@
+---
+- name: Install Nginx
+  hosts: all
+  become: true
+  tasks:
+    - name: Install Nginx on Debian
+      apt:
+        name: nginx
+        state: present
+      when: ansible_distribution == 'Debian'
+    
+    - name: Install repo epel-release
+      yum:
+        name: epel-release
+        state: present
+      when: ansible_distribution == 'CentOS'
+
+    - name: Install Nginx on CentOS
+      yum:
+        name: nginx
+        state: present
+      when: ansible_distribution == 'CentOS'
+
+    - name: Start Nginx Service
+      service:
+        name: nginx
+        state: started

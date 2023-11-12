@@ -1,0 +1,21 @@
+# setup_loadbalancer.yml
+
+---
+- name: Setup Nginx Load Balancer
+  hosts: loadbalancer
+  become: true
+  tasks:
+    - name: Configure Nginx Load Balancer
+      template:
+        src: nginx_loadbalancer.conf.j2
+        dest: /etc/nginx/conf.d/loadbalancer.conf
+#       dest: /etc/nginx/sites-available/default
+      notify:
+        - restart nginx
+
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
+

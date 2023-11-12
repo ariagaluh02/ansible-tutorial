@@ -1,0 +1,16 @@
+# change_index.yml
+
+---
+- name: Change Nginx Index Page on Backend Group
+  hosts: backend
+  become: true
+  tasks:
+    - name: Create custom index.html
+      template:
+        src: index.html.j2
+        dest: /var/www/html/index.nginx-debian.html
+
+    - name: Restart Nginx Service
+      service:
+        name: nginx
+        state: restarted

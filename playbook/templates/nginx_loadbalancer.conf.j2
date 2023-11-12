@@ -1,0 +1,14 @@
+upstream backend {
+  least_conn;
+  server 172.22.0.2;
+  server 172.22.0.4;
+}
+
+server {
+  listen 80;
+  server_name 172.22.0.5;
+
+  location / {
+    proxy_pass http://backend;
+  }
+}
