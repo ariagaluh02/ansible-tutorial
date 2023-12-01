@@ -44,12 +44,12 @@
     ansible.cfg contain as follows:
     ```
     [defaults]
-    inventory = inventory-smartm2m
+    inventory = inventory-tutorial
     ```
 
-7. Create ansible **inventory** named **inventory-smartm2m**
+7. Create ansible **inventory** named **inventory-tutorial**
     ```
-    nano inventory-smartm2m
+    nano inventory-tutorial
     ```
     configure as follows:
     ```
